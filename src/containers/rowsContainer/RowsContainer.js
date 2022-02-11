@@ -86,13 +86,13 @@ function RowsContainer(props) {
         }
         let counter = 0;
         for (let i = 0; i < 4; i++) {
-            if (temp[i].type == 'full') {
+            if (temp[i].type === 'full') {
                 counter += 1;
 
 
             }
         }
-        if (counter == 4) {
+        if (counter === 4) {
             setGameState('congrats');
             toggleModal()
             setPreviousRow([]);
@@ -126,7 +126,7 @@ function RowsContainer(props) {
             contentLabel="My dialog"
         >
 
-            {gameState == 'loss' ? <Modal1 onPress={toggleModal} type='loss' /> : gameState == 'congrats' ? <Modal1 onPress={toggleModal} type='congrats' /> : null}
+            {gameState === 'loss' ? <Modal1 onPress={toggleModal} type='loss' /> : gameState == 'congrats' ? <Modal1 onPress={toggleModal} type='congrats' /> : null}
 
         </Modal>
 
