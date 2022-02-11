@@ -1,0 +1,23 @@
+.circle {
+  display: flex;
+  width: 60px;
+  height: 60px;
+
+  color: black;
+  border-radius: 50%;
+  border: 1px solid lightgrey;
+ 
+}
+@media  (max-width:490px){
+  .circle {
+    display: flex;
+    width: 40px;
+    height: 40px;
+  
+    color: black;
+    border-radius: 50%;
+    border: 1px solid lightgrey;
+   
+  }
+  
+}

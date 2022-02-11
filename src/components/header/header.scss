@@ -1,0 +1,28 @@
+@each $color in orange, pink, green, lightgreen, darkgreen, brown {
+  .#{$color}-text {
+    background-color: $color;
+    font-size: 5em;
+    width: 10%;
+    height: 10%;
+  }
+}
+.header {
+  display: flex;
+  width: 100%;
+  flex-shrink: 1;
+}
+.simpleText {
+  @extend .orange-text;
+  background-color: transparent;
+}
+@media screen and (max-width: 500px) {
+  @each $color in orange, pink, green, lightgreen, darkgreen, brown {
+    .#{$color}-text {
+      background-color: $color;
+      font-size: 3em;
+      width: 10%;
+      height: 10%;
+    }
+  }
+ 
+}

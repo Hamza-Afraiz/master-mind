@@ -1,0 +1,14 @@
+.smallCircles{
+    display: flex;
+    flex-wrap: wrap;
+    width:80px;
+    flex-direction: row;
+    justify-content: space-between;
+   
+    align-self: center;
+    height: inherit;
+    margin-right: 10px;
+    margin-left: 10px;
+    
+
+}
