@@ -39,11 +39,19 @@
     background-color: red;
 }
 @media screen and (max-width:490px){
-    .congrats {
-        font-size: 9px;
+    .modal .congrats {
+        font-size: 12px;
         font-weight: BOLD;
     }
-    .play{
+    .modal .play{
+        font-size: 9px;
+    }
+    .modal2 .loss{
+        font-size: 12px;
+        font-weight: BOLD;
+
+    }
+    .modal2 .play{
         font-size: 9px;
     }
 
