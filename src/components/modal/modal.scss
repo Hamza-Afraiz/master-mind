@@ -38,3 +38,13 @@
     @extend .modal;
     background-color: red;
 }
+@media screen and (max-width:490px){
+    .congrats {
+        font-size: 9px;
+        font-weight: BOLD;
+    }
+    .play{
+        font-size: 9px;
+    }
+
+}

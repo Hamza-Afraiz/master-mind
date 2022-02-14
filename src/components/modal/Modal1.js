@@ -2,8 +2,8 @@ import React from 'react';
 import './modal.scss';
 
 function Modal1(props) {
-    const {type}=props;
-    console.log(type);
+    
+   
     function modal(){
         if(props.type === 'congrats'){
             return(
