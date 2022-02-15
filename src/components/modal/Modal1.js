@@ -7,7 +7,7 @@ function Modal1(props) {
       return (
         <div className="modal">
           <p className="congrats">CONGRAGULATIONS</p>
-          <div onClick={props.onPress} className="playButton">
+          <div onClick={props.onToggleModal} className="playButton">
             <p className="play">PLAY</p>
           </div>
         </div>
@@ -16,7 +16,7 @@ function Modal1(props) {
       return (
         <div className="modal2">
           <p className="loss">GAME OVER!</p>
-          <div onClick={props.onPress} className="playButton">
+          <div onClick={props.onToggleModal} className="playButton">
             <p className="play">PLAY AGAIN</p>
           </div>
         </div>
