@@ -3,17 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-const reRender=()=>{
-  ReactDOM.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App onPress={reRender}/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
