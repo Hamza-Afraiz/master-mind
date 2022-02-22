@@ -6,9 +6,9 @@ function ColorsColumn(props) {
 
   return (
     <div className="colorsColumn">
-      {props.verticalColors.map((item) =>(
-          <div
-          className={item.id === selected ? 'selected':''}
+      {props.verticalColors.map((item,index) => (
+        <div key={index}
+          className={item.id === selected ? "selected" : ""}
           onClick={() => {
             props.onSelectingColor(item);
             setSelected(item.id);
@@ -16,7 +16,6 @@ function ColorsColumn(props) {
         >
           <ColorCircle color={item.color} />
         </div>
-       
       ))}
     </div>
   );

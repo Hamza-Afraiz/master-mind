@@ -4,29 +4,29 @@ function Header(props) {
   
    
     return (
-        <div class='header'>
-            <div class='orange-text'>
+        <div className='header'>
+            <div className='orange-text'>
                 M
 
             </div>
-            <div class='pink-text'>
+            <div className='pink-text'>
                 A
 
             </div>
-            <div class='green-text'>
+            <div className='green-text'>
                 S
 
             </div>
             
-            <div class='lightgreen-text'>
+            <div className='lightgreen-text'>
                 T
 
             </div>
-            <div class='darkgreen-text'>
+            <div className='darkgreen-text'>
                 E
 
             </div>
-            <div class='brown-text'>
+            <div className='brown-text'>
                 R
 
             </div>

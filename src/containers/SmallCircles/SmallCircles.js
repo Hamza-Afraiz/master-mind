@@ -7,8 +7,11 @@ function SmallCircles(props) {
   
     return (
         <div className='smallCircles'>
-            {circles.map((item)=>(
-                <SmallCircle type={item.type} />
+            {circles.map((item,index)=>(
+                <div key={index}>
+                    <SmallCircle type={item.type} />
+                    </div>
+                
             ))}
             
         </div>
