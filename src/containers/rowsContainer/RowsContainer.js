@@ -65,24 +65,7 @@ function RowsContainer(props) {
   };
 
   //here is the logic to check that selected row of colors are equal to the demmanding row or not
-  const checkCirclesColorData = (original, new1) => {
-    let temp = circles1.map((a) => ({ ...a }));
-
-    for (let i = 0; i < 4; i++) {
-      let exist = Object.values(original).includes(new1[i].color); //checking if there is color or not.
-      if (original[i].color === new1[i].color) {
-        //checking both color and position
-
-        temp[i].type = "full";
-      } else if (exist) {
-        temp[i].type = "small";
-      } else {
-        temp[i].type = "cross";
-      }
-    }
-
-    //to check selected row result
-
+  const checkGameState = (temp) => {
     let counter = 0;
 
     //also  the game ending condition to check if all the inputs colors are correct
@@ -98,17 +81,56 @@ function RowsContainer(props) {
           toggleModal();
           setPreviousRow([]);
           restartGame();
-          return;
+          return false;
         }
       }
+    }
+  };
+  const selectedColorsComparison=(correctColorsValues, attemptedColorValues)=>{
+    let temp = circles1.map((a) => ({ ...a }));
+
+    for (let i = 0; i < 4; i++) {
+      let exist = Object.values(correctColorsValues).includes(attemptedColorValues[i].color); //checking if there is color or not.
+      if (correctColorsValues[i].color === attemptedColorValues[i].color) {
+        //checking both color and position
+
+        temp[i].type = "full";
+      } else if (exist) {
+        temp[i].type = "small";
+      } else {
+        temp[i].type = "cross";
+      }
+    }
+    return temp;
+
+  }
+  const checkCirclesColorData = (correctColorsValues, attemptedColorValues) => {
+    
+    let temp=selectedColorsComparison(correctColorsValues, attemptedColorValues);
+    //to check selected row result
+    let gameEndValue = checkGameState(temp); //whether to end or not
+    if (gameEndValue === false) {
+      return;
+    } else {
+      let circlesPreviousAttempts = attemptedColorValues; //big colored circles for previous
+      let smallCirclesPreviousAttempts = temp;
+      setPreviousRowMethod(
+        circlesPreviousAttempts,
+        smallCirclesPreviousAttempts
+      );
     }
 
     //if user selected row is all the way correct
 
     //now if user hasnt selected the correct row then keeping track of previous results
 
-    let circlesPreviousAttempts = new1; //big colored circles for previous
-    let smallCirclesPreviousAttempts = temp; //small circles for previous
+    //small circles for previous
+    //there is a new row so there is a new coounter
+  };
+  const setPreviousRowMethod = (
+    circlesPreviousAttempts,
+    smallCirclesPreviousAttempts
+  ) => {
     let tempObj = {
       circlesPreviousAttempts,
       smallCirclesPreviousAttempts,
@@ -117,7 +139,7 @@ function RowsContainer(props) {
     temp2.push(tempObj);
     setPreviousRow(temp2);
     setActiveRow(colorsObject); //setting agian empty state for next row of game
-    setCurrentAttemptCounter(0); //there is a new row so there is a new coounter
+    setCurrentAttemptCounter(0);
   };
 
   //method to handle child component called by a child component
@@ -137,7 +159,7 @@ function RowsContainer(props) {
       </div>
     );
   };
-  
+
   const currentAttemptCounterJSX = () => {
     return (
       <>
@@ -154,7 +176,7 @@ function RowsContainer(props) {
       </>
     );
   };
-  const activeAndRemainingRows2 = () => {
+  const activeAndRemainingRows = () => {
     return (
       <div>
         {tries.map((item, index) => (
@@ -202,7 +224,7 @@ function RowsContainer(props) {
 
       <div>
         {previousAttemptsContainer()}
-        {activeAndRemainingRows2()}
+        {activeAndRemainingRows()}
       </div>
       {/* colors column to select and pasting on row */}
       <div>
