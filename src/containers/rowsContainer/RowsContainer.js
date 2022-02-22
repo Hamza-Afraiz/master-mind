@@ -88,8 +88,9 @@ function RowsContainer(props) {
     //also  the game ending condition to check if all the inputs colors are correct
     for (let i = 0; i < 4; i++) {
       if (temp[i].type === "full") {
-        counter += 1; 
-        if(counter === 0 ){ //if even one is correct go to next row
+        counter += 1;
+        if (counter === 0) {
+          //if even one is correct go to next row
           break;
         }
         if (counter === 4) {
@@ -103,7 +104,6 @@ function RowsContainer(props) {
     }
 
     //if user selected row is all the way correct
-    
 
     //now if user hasnt selected the correct row then keeping track of previous results
 
@@ -125,54 +125,62 @@ function RowsContainer(props) {
     setColumnColorNumber(selectedColorObject);
   };
 
-  const previousAttemptsContainer=()=>{
-    return(
+  const previousAttemptsContainer = () => {
+    return (
       <div>
-  {previousRow?.map((item) => (
-        <div className="previous">
-          <FourCirlce colorsObject={item.circlesPreviousAttempts} />
-          <SmallCircles circles={item.smallCirclesPreviousAttempts} />
-        </div>
-      ))}
+        {previousRow?.map((item, index) => (
+          <div key={index} className="previous">
+            <FourCirlce colorsObject={item.circlesPreviousAttempts} />
+            <SmallCircles circles={item.smallCirclesPreviousAttempts} />
+          </div>
+        ))}
       </div>
-    
-
-    )
-  }
-  const activeAndRemainingRows=()=>{
-    return(
-
-    
-    <div>
-      
-      {tries.map((item) =>
+    );
+  };
+  
+  const currentAttemptCounterJSX = () => {
+    return (
+      <>
+        {currentAttemptCounter >= 4 ? (
+          <div>
+            <img
+              className="image"
+              onClick={handleRowAttempt}
+              src="https://www.freepnglogos.com/uploads/tick-png/image-tick-mark-icon-png-good-luck-charlie-wiki-2.png"
+              alt="alternatetext"
+            />
+          </div>
+        ) : null}
+      </>
+    );
+  };
+  const activeAndRemainingRows2 = () => {
+    return (
+      <div>
+        {tries.map((item, index) => (
           //  to check if we are on first index of tries.we ll always be on first .because if we loose we are decreasing the tries and mutating previous row
 
-          item === 1 ? (
-            <div className="active">
-              <FourCirlce onPress={PastingOneColor} colorsObject={activeRow} />
-              {currentAttemptCounter >= 4 ? (
-                <div>
-                  <img
-                    className="image"
-                    onClick={handleRowAttempt}
-                    src="https://www.freepnglogos.com/uploads/tick-png/image-tick-mark-icon-png-good-luck-charlie-wiki-2.png"
-                    alt="alternatetext"
-                  />
-                </div>
-              ) : null}
-              <SmallCircles circles={circles1} />
-            </div>
-          ) : (
-            <div className="remaining">
-              <FourCirlce onPress={PastingOneColor} colorsObject={colorsObject} />
-              <SmallCircles circles={circles1} />
-            </div>
-          )
-        )}
-    </div>)
+          <div key={index} className={item === 1 ? "active" : "remaining"}>
+            {item === 1 ? (
+              <>
+                <FourCirlce
+                  onPress={PastingOneColor}
+                  colorsObject={activeRow}
+                />
+                {currentAttemptCounterJSX()}
+              </>
+            ) : (
+              <>
+                <FourCirlce colorsObject={colorsObject} />
+              </>
+            )}
 
-  }
+            <SmallCircles circles={circles1} />
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="rowsContainer">
@@ -182,7 +190,9 @@ function RowsContainer(props) {
         onRequestClose={toggleModal}
         contentLabel="My dialog"
       >
-        {gameState === "loss" && <Modal1 onToggleModal={toggleModal} type="loss" />}
+        {gameState === "loss" && (
+          <Modal1 onToggleModal={toggleModal} type="loss" />
+        )}
         {gameState === "congrats" && (
           <Modal1 onToggleModal={toggleModal} type="congrats" />
         )}
@@ -191,10 +201,8 @@ function RowsContainer(props) {
       {/* already attempted rows */}
 
       <div>
-
-
         {previousAttemptsContainer()}
-        {activeAndRemainingRows()}
+        {activeAndRemainingRows2()}
       </div>
       {/* colors column to select and pasting on row */}
       <div>
