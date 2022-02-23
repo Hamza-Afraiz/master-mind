@@ -86,11 +86,16 @@ function RowsContainer(props) {
       }
     }
   };
-  const selectedColorsComparison=(correctColorsValues, attemptedColorValues)=>{
+  const selectedColorsComparison = (
+    correctColorsValues,
+    attemptedColorValues
+  ) => {
     let temp = circles1.map((a) => ({ ...a }));
 
     for (let i = 0; i < 4; i++) {
-      let exist = Object.values(correctColorsValues).includes(attemptedColorValues[i].color); //checking if there is color or not.
+      let exist = Object.values(correctColorsValues).includes(
+        attemptedColorValues[i].color
+      ); //checking if there is color or not.
       if (correctColorsValues[i].color === attemptedColorValues[i].color) {
         //checking both color and position
 
@@ -102,11 +107,12 @@ function RowsContainer(props) {
       }
     }
     return temp;
-
-  }
+  };
   const checkCirclesColorData = (correctColorsValues, attemptedColorValues) => {
-    
-    let temp=selectedColorsComparison(correctColorsValues, attemptedColorValues);
+    let temp = selectedColorsComparison(
+      correctColorsValues,
+      attemptedColorValues
+    );
     //to check selected row result
     let gameEndValue = checkGameState(temp); //whether to end or not
     if (gameEndValue === false) {
